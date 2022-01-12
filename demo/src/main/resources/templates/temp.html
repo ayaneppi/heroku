@@ -5,12 +5,30 @@
 	<title>Document</title>
 </head>
 <body>
-	Hello
 	<table>
-	<tr th:each="customer: ${customerList}">
-		<td th:text="${customer.id}" />
-		<td th:text="${customer.Name}" />
+	<tr>
+		<th>ID</th>
 	</tr>
+	<td th:text="${customer.id}" />
+	<tr>
+		<th>更新前</th>
+	</tr>
+	
+	<td>更新前</td>
+	<td>建物名</td>
+    <td>:</td>
+		<td th:text="${property.oldName}" />
+	</tr>
+	
+	<tr>
+		<th>更新後</th>
+	</tr>
+    <tr>
+    　　<td>更新後</td>
+      <td>建物名</td>
+    　　<td>:</td>
+    　　<td th:text="${property.newName}" />
+    </tr>
 	</table>
 </body>
 </html>
