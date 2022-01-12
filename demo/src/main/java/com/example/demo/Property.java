@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="salesforce.property__c")
+@Table(name="Property__c",schema = "salesforce")
 public class Property {
 	
 		@Id
