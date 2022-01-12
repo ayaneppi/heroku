@@ -26,25 +26,22 @@ public class DemoController {
 		return mav;
 	}
 	@RequestMapping("/heroku")
-	public ModelAndView heroku(
+	public String heroku(
 		@RequestParam("Id")Long Id,
 		@RequestParam("newName")String newName,
 		Model model
 		) {
-		ModelAndView mav = new ModelAndView();
 		Iterable<Property> findPropertyList = cr.findAll();
-		List<Object> propertyList = new ArrayList<Object>();
+		String oldName = null; 
 		for(Property p : findPropertyList){
 			//入力されたIdと一致した場合は変更前のProperty名を取得する
 			if(p.getId() == Id) {
-				propertyList.add(Id);
-				propertyList.add(p.getName());
-				propertyList.add(newName);
-				System.out.println(propertyList);
+				oldName = p.getName();
 			}
 		}
-		mav.addObject("propertyList", propertyList);
-		mav.setViewName("temp");
-      return mav;
+	  model.addAttribute("oldName",oldName);
+	  model.addAttribute("Id",Id);
+	  model.addAttribute("newName",newName);
+      return "temp";
 	}
 }

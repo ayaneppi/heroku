@@ -6,11 +6,10 @@
 </head>
 <body>
 	<table>
-		<tr th:each="property: ${propertyList}">
 		<tr>
 		<th>ID</th>
-	</tr>
-	<td th:text="${property.id}" />
+	</tr>	
+	<td th:text="${id}" />
 	<tr>
 		<th>更新前</th>
 	</tr>
@@ -18,7 +17,7 @@
 	<td>更新前</td>
 	<td>建物名</td>
     <td>:</td>
-		<td th:text="${property.Name}" />
+		<td th:text="${oldName}" />
 	</tr>
 	
 	<tr>
@@ -28,9 +27,8 @@
     　　<td>更新後</td>
       <td>建物名</td>
     　　<td>:</td>
-    　　<td th:text="${property.newName}" />
+    　　<td th:text="${newName}" />
     </tr>
-		</tr>		
 	</table>
 </body>
 </html>
