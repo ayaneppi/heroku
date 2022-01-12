@@ -18,8 +18,12 @@ public class DemoController {
 	@Autowired Repository cr;
 
 	@RequestMapping("/")
-	public String index() {
-      return "index";
+	public ModelAndView index() {
+		ModelAndView mav = new ModelAndView();
+		Iterable<Property> propertyList = cr.findAll();
+		mav.addObject("propertyList", propertyList);
+		mav.setViewName("index");
+		return mav;
 	}
 	@RequestMapping("/heroku")
 	public ModelAndView heroku(
