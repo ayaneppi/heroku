@@ -28,8 +28,6 @@ public class Property {
 			Name = name;
 		}
 	    
-	    //protected DemoApplication() {}
-		//getter, setter 省略
 	    
 
 }

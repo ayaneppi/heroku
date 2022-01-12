@@ -3,12 +3,20 @@
 
 <body>
 	<table>
-		<th>
-		<tr th:each="property: ${propertyList}">
-		<td th:text="${property.id}" />
-		<td th:text="${property.Name}" />
-		</tr>
-		</th>		
+		<thead>
+	      	<tr>
+	        <th>ID</th>
+	        <th>Property名</th>
+	      	</tr>
+    	</thead>
+    	<tbody>
+			<th>
+			<tr th:each="property: ${propertyList}">
+			<td th:text="${property.id}" />
+			<td th:text="${property.Name}" />
+			</tr>
+			</th>	
+    	</tbody>	
 	</table>
 
 	<table>
