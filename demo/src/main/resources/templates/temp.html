@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Property更新結果</title>
 </head>
 <body>
 	<table>
-	<tr>
+		<tr th:each="property: ${propertyList}">
+		<tr>
 		<th>ID</th>
 	</tr>
-	<td th:text="${customer.id}" />
+	<td th:text="${property.id}" />
 	<tr>
 		<th>更新前</th>
 	</tr>
@@ -17,7 +18,7 @@
 	<td>更新前</td>
 	<td>建物名</td>
     <td>:</td>
-		<td th:text="${property.oldName}" />
+		<td th:text="${property.Name}" />
 	</tr>
 	
 	<tr>
@@ -29,6 +30,7 @@
     　　<td>:</td>
     　　<td th:text="${property.newName}" />
     </tr>
+		</tr>		
 	</table>
 </body>
 </html>

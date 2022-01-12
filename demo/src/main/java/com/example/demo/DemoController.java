@@ -40,6 +40,7 @@ public class DemoController {
 				propertyList.add(Id);
 				propertyList.add(p.getName());
 				propertyList.add(newName);
+				System.out.println(propertyList);
 			}
 		}
 		mav.addObject("propertyList", propertyList);

@@ -16,14 +16,12 @@ public class Property {
 	    private Long id;
 	    private String Name;
 		public Long getId() {
-			System.out.println(id);
 			return id;
 		}
 		public void setId(Long id) {
 			this.id = id;
 		}
 		public String getName() {
-			System.out.println(Name);
 			return Name;
 		}
 		public void setName(String name) {
