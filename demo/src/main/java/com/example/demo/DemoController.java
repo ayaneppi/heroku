@@ -18,7 +18,7 @@ public class DemoController {
 
 		Iterable<Property> customerList = cr.findAll();
 		mav.addObject("customerList", customerList);
-		mav.setViewName("customerList");
+		mav.setViewName("temp");
       return mav;
 	}
 }
