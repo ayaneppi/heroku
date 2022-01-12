@@ -32,19 +32,23 @@ public class DemoController {
 	@RequestParam("newName")String newName,
 	Model model
 	) {
-		List<Property> findPropertyList = rep.findAll();
 		String oldName = null;
-		for(Property p : findPropertyList){
+		//Idで検索かける
+		Property proId = rep.findById(Id).orElseThrow();
+		oldName = proId.getName();
+		//DBに更新かける
+		proId.setName(newName);
+		rep.save(proId);
+		/*for(Property p : findPropertyList){
 			//入力されたIdと一致した場合は変更前のProperty名を取得する
 			if(p.getId() == Id) {
 				oldName = p.getName();
+				//DBに更新かける
+				p.setName(newName);
+				rep.save(p);
 			}
-		}
-		//DBに更新かける
-		Property pro = new Property();
-		pro.setId(Id);
-		pro.setName(newName);
-		rep.save(pro);
+		}*/
+		
 		model.addAttribute("oldName",oldName);
 		model.addAttribute("Id",Id);
 		model.addAttribute("newName",newName);
