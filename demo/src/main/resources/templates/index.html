@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
+
+<body>
+	<table>
+		<tr>
+			<th>Salesforceのレコードを更新</th>
+		</tr>
+		<form action = "/" method="post">
+	  	<tr>
+		  <td>取引先名</td>
+		  <td>:</td>
+		  <td><input type="text" id = "AccountName" name = "AccountName" size="20"></td>
+		</tr>
+		<tr>
+		  <td>電話番号</td>
+		  <td>:</td>
+		  <td><input type="text" id = "newPhone" name = "newPhone" size="20"></td>
+		</tr>
+		<tr>
+		  <td><input type ="submit" name = "api" value = "APIを使用して更新"/></td>
+		</tr>
+		<tr>
+		  <td><input type ="submit" name = "hc" value = "HerokuConnectを使用して更新"/></td>
+		</tr>
+		</form>
+	</table>
+</body>
+</html>
