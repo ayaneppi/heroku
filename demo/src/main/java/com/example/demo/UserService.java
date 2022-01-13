@@ -16,7 +16,7 @@ public class UserService {
 	
 	//Userの検索
 	public User findbyName(String Name){
-        return ur.findByName(Name).get();
+        return ur.findByName(Name);
     }
 	/*
 	public boolean findbyName(User user){
