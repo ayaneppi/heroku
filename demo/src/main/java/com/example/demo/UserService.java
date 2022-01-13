@@ -16,17 +16,6 @@ public class UserService {
 	
 	//Userの検索
 	public User findbyName(String Name){
-        return ur.findByName(Name);
+        return (User) ur.findByName(Name);
     }
-	/*
-	public boolean findbyName(User user){
-        User u = ur.findByUserName(user.getName());
-        //ユーザ名とパスワードが一致した場合
-        if(u.getPassWord() == user.getPassWord()) {
-        	return true;
-        }else {
-        	return false;
-        }
-    }
-	*/
 }
