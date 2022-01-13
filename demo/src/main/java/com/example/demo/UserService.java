@@ -16,12 +16,7 @@ public class UserService {
 	
 	//Userの検索
 	public User findbyName(String Name){
-		User probe = new User();
-        probe.setUser_name(Name);
-
-        // 検索条件からExampleインスタンスを生成
-        Example<User> example = Example.of(probe);
-        User user = ur.findOne(example).get();
+        return ur.findByName(Name).get();
     }
 	/*
 	public boolean findbyName(User user){
