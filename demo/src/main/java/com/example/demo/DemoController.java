@@ -20,9 +20,6 @@ public class DemoController {
 	
 	@RequestMapping("/")
 	public String index() {
-		List<User> userList = us.findAll();
-		System.out.println("userListの中身---------------");
-		System.out.println(userList);
 		return "login";
 	}
 	
@@ -37,7 +34,7 @@ public class DemoController {
 		try {
 			u = us.findbyName(userName);
 			System.out.println("uの中身---------------");
-			System.out.println(u);
+			System.out.println(u.getPassWord());
 			
 		} catch (UsernameNotFoundException e) {
 			//独自の例外です

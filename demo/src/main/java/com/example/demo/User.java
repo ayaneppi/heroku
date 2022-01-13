@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,8 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String name;
-    private String passwords;
-    private String user_name;
+    private String passwords__c;
+    private String user_name__c;
     
     public Long getId() {
 		return id;
@@ -23,10 +24,10 @@ public class User {
 		this.id = id;
 	}
 	public String getUser_name() {
-		return user_name;
+		return user_name__c;
 	}
 	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+		this.user_name__c = user_name;
 	}
 	public String getName() {
 		return name;
@@ -35,10 +36,10 @@ public class User {
 		this.name = name;
 	}
 	public String getPassWord() {
-		return passwords;
+		return passwords__c;
 	}
 	public void setPassWord(String passwords) {
-		this.passwords = passwords;
+		this.passwords__c = passwords;
 	}
 	
 }
