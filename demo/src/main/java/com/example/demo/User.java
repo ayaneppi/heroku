@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,34 +12,34 @@ import javax.persistence.Table;
 public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
-	private String Name;
-    private String Passwords;
-    private String User_name;
+	private Long id;
+	private String name;
+    private String passwords;
+    private String user_name;
     
     public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		this.Id = id;
+		this.id = id;
 	}
 	public String getUser_name() {
-		return User_name;
+		return user_name;
 	}
 	public void setUser_name(String user_name) {
-		this.User_name = user_name;
+		this.user_name = user_name;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPassWord() {
-		return Passwords;
+		return passwords;
 	}
 	public void setPassWord(String Passwords) {
-		this.Passwords = Passwords;
+		this.passwords = Passwords;
 	}
 	public User() {
 	}

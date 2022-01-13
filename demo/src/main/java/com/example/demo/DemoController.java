@@ -35,8 +35,12 @@ public class DemoController {
 		User u = null;
 		try {
 			u = us.findbyName(userName);
+			System.out.println("uの中身---------------");
+			System.out.println(u);
+			
 		} catch (UsernameNotFoundException e) {
-			e.printStackTrace();
+			//独自の例外です
+			System.out.println(e.getMessage());
 		}
 		ModelAndView mav = new ModelAndView();
 		//ログインに失敗した場合
@@ -64,7 +68,8 @@ public class DemoController {
 		//DBに更新かける
 		proId.setName(newName);
 		rep.save(proId);
-		/*for(Property p : findPropertyList){
+		/*
+		for(Property p : findPropertyList){
 			//入力されたIdと一致した場合は変更前のProperty名を取得する
 			if(p.getId() == Id) {
 				oldName = p.getName();
