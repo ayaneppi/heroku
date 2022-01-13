@@ -33,18 +33,15 @@ public class DemoController {
 		User u = null;
 		try {
 			u = us.findbyName(userName);
-			System.out.println("uの中身---------------");
-			System.out.println(u.getPassWord());
-			
 		} catch (UsernameNotFoundException e) {
 			//独自の例外です
 			System.out.println(e.getMessage());
 		}
 		ModelAndView mav = new ModelAndView();
 		//ログインに失敗した場合
-		if(u.getPassWord() != passWord) {
-			mav.addObject("iserror", false);
-			mav.setViewName("login");
+		if(u == null || u.getPassWord() != passWord) {
+			model.addAttribute("iserror", false);
+			mav.setViewName("Login");
 			return mav;
 		}else {
 			List<Property> propertyList = rep.findAll();
