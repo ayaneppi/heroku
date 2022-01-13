@@ -2,6 +2,6 @@ package com.example.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, String> {
-	public User findByName(String username);
+public interface UserRepository extends JpaRepository<User, Long> {
+	public User findByName(String Name);
 }
