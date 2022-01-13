@@ -1,10 +1,10 @@
 package com.example.demo;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
-import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 
@@ -15,7 +15,11 @@ public class UserService {
 	UserRepository ur;
 	
 	//Userの検索
-	public User findbyName(String Name){
-        return (User) ur.findByName(Name);
+	public User findbyName(String Name) throws UsernameNotFoundException{
+        User u = ur.findByName(Name);
+        if (u == null) {
+            throw new UsernameNotFoundException("user not found");
+        }
+        return u;
     }
 }

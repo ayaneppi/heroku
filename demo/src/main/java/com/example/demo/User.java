@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,14 +31,14 @@ public class User {
 	public String getName() {
 		return Name;
 	}
-	public void setName(String name) {
-		this.Name = name;
+	public void setName(String Name) {
+		this.Name = Name;
 	}
 	public String getPassWord() {
 		return Passwords;
 	}
-	public void setPassWord(String passWord) {
-		this.Passwords = passWord;
+	public void setPassWord(String Passwords) {
+		this.Passwords = Passwords;
 	}
 	public User() {
 	}

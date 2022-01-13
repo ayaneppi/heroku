@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,23 +32,19 @@ public class DemoController {
 		Model model) {
 		
 		//ユーザ検索結果の取得
-		User u = (User) us.findbyName(userName);
+		User u = null;
+		try {
+			u = us.findbyName(userName);
+		} catch (UsernameNotFoundException e) {
+			e.printStackTrace();
+		}
 		ModelAndView mav = new ModelAndView();
 		//ログインに失敗した場合
-		if(((com.example.demo.User) u).getPassWord() != passWord) {
-			
+		if(u.getPassWord() != passWord) {
+			mav.addObject("iserror", false);
 			mav.setViewName("login");
 			return mav;
-		}
-		
-		/*User user;
-	    user.setUsername(userName);
-	    user.setPassword(passWord);
-		  if(result == false) {
-			mav.addObject("iserror", result);
-			mav.setViewName("login");
-			return mav;
-		}*/else {
+		}else {
 			List<Property> propertyList = rep.findAll();
 			mav.addObject("propertyList", propertyList);
 			mav.setViewName("index");
