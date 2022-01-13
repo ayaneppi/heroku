@@ -41,12 +41,5 @@ public class User {
 	public void setPassWord(String Passwords) {
 		this.passwords = Passwords;
 	}
-	public User() {
-	}
-	
-	public User(String name, String Passwords) {
-		setName(name);
-		setPassWord(Passwords);
-	}
 	
 }

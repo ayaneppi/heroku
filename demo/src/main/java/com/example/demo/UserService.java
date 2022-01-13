@@ -16,7 +16,7 @@ public class UserService {
 	
 	//Userの検索
 	public User findbyName(String Name) throws UsernameNotFoundException{
-        User u = ur.findByName("\""+Name+"\"");
+        User u = ur.findByName(Name);
         if (u == null) {
         	System.out.println("エクセプション入った---------------");
             throw new UsernameNotFoundException("ユーザが見つかりません");
