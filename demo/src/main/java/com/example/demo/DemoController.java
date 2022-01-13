@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +20,9 @@ public class DemoController {
 	
 	@RequestMapping("/")
 	public String index() {
+		List<User> userList = us.findAll();
+		System.out.println("userListの中身---------------");
+		System.out.println(userList);
 		return "login";
 	}
 	
