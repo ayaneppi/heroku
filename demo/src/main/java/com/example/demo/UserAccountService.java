@@ -24,34 +24,17 @@ public class UserAccountService implements UserDetailsService {
 		if(username == null || "".equals(username)) {
 			throw new UsernameNotFoundException("Username is empty");
 		}
-		User ac = repository.findByUsername(username);
+		
+		User ac = repository.findByName(username);
+		
 		if(ac == null) {
 			throw new UsernameNotFoundException("Username not found:" + username);
 		}
-		if(!ac.isEnable()) {
+		
+		if(!ac.isEnabled()) {
 			throw new UsernameNotFoundException("User not found:" + username);
 		}
-		UserAccount user = new UserAccount(ac,getAuthorities(ac));
 		
-		return user;
-	}
-	private Collection<GrantesAuthority> getAuthorities(User user){
-		if(user.isAdmin()) {
-			return AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER");
-		}else {
-			return AuthorityUtils.createAuthorityList("ROLE_USER");
-		}
-	}
-
-	@Transactional
-	public void registerAdmin(String username,String password) {
-		User user = new User(username,passwordEncoder.encode(password),true);
-		repository.save(user);
-	}
-	
-	@Transactional
-	public void registerUser(String username,String password) {
-		User user = new User(username,passwordEncoder.encode(password),false);
-		repository.save(user);
+		return ac;
 	}
 }
