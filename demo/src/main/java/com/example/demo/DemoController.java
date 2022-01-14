@@ -19,7 +19,9 @@ public class DemoController {
 	UserService us;
 	
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
+
+		model.addAttribute("iserror",false);
 		return "login";
 	}
 	
@@ -37,10 +39,15 @@ public class DemoController {
 			//独自の例外です
 			System.out.println(e.getMessage());
 		}
+		System.out.println(u.getPassWord().length());
+		System.out.println(passWord.length());
+		System.out.println(u.getPassWord().length());
+		System.out.println("パスワード入力値"+passWord);
+		System.out.println("パスワード取得値"+u.getPassWord());
 		ModelAndView mav = new ModelAndView();
 		//ログインに失敗した場合
-		if(u == null || u.getPassWord() != passWord) {
-			model.addAttribute("iserror", false);
+		if(u == null || !u.getPassWord().equals(passWord)) {
+			model.addAttribute("iserror", true);
 			mav.setViewName("Login");
 			return mav;
 		}else {
