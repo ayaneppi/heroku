@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // ログイン不要ページの設定
-        /*http
+        http
             .authorizeRequests()
             	.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.permitAll();
         	
         //CSRF対策を無効に設定（一時的）
-        http.csrf().disable();*/
+        http.csrf().disable();
 	    
 	 }
 	 @Override
