@@ -29,8 +29,8 @@ public class DemoController {
 	
 	@RequestMapping("/login")
 	public ModelAndView logincheck(
-		@RequestParam("userName")String userName,
-		@RequestParam("passWord")String passWord,
+		@RequestParam("username")String userName,
+		@RequestParam("password")String passWord,
 		Model model) {
 		
 		//ユーザ検索結果の取得
