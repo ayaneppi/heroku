@@ -23,17 +23,15 @@ public class DemoController {
 	@Autowired
 	UserService us;
 	
-	@RequestMapping("/")
-	public String index(Model model) {
-
+	@RequestMapping(value = "/login",method= RequestMethod.GET)
+	public String login(Model model) {
 		model.addAttribute("iserror",false);
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView logincheck(
-		@RequestParam("username")String userName,
-		@RequestParam("password")String passWord,
+	//@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/index")
+	public ModelAndView index(
 		Model model) {
 		ModelAndView mav = new ModelAndView();
 		//ユーザ検索結果の取得
@@ -43,23 +41,17 @@ public class DemoController {
 			UserAccount user = UserAccount.class.cast(authentication.getPrincipal());
 			model.addAttribute("userInfo","ようこそ"+user.getUsername()+"さん");
 		}
-		/*try {
-			u = us.findbyName(userName);
-		} catch (UsernameNotFoundException e) {
-			//独自の例外です
-			System.out.println(e.getMessage());
-		}
-		//ログインに失敗した場合
-		if(u == null || !u.getPassWord().equals(passWord)) {
-			model.addAttribute("iserror", true);
-			mav.setViewName("Login");
-			return mav;
-		}else {*/
+
 			List<Property> propertyList = rep.findAll();
 			mav.addObject("propertyList", propertyList);
 			mav.setViewName("index");
 			return mav;
-		//}
+	}
+	
+	@RequestMapping(value ="/login-error",method = RequestMethod.GET)
+	public String loginError(Model model) {
+		model.addAttribute("iserror",true);
+		return "login";
 	}
 	
 	@RequestMapping("/heroku")

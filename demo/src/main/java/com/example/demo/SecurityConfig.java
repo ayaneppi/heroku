@@ -35,13 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	.formLogin()
         		.loginPage("/login")
         		.defaultSuccessUrl("/index")
-        		.failureUrl("/login")
+        		.failureUrl("/login-error")
         		.permitAll();
         	
         //CSRF対策を無効に設定（一時的）
         http.csrf().disable();
 	    
 	 }
+	/*
 	 @Autowired
      void configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -53,4 +54,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    */
 }
