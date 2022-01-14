@@ -27,13 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // ログイン不要ページの設定
         http
             .authorizeRequests()
-            	.antMatchers("/").permitAll() //ホームへアクセス許可
+            	//.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
-                .antMatchers("/login").permitAll() //ログインページは直リンクOK
-                .anyRequest().authenticated()//それ以外は直リンク禁止
+                //.antMatchers("/login").permitAll() //ログインページは直リンクOK
+                .anyRequest()
+                .authenticated()//それ以外は直リンク禁止
                 .and()
         	.formLogin()
         		.loginPage("/")
+        		.defaultSuccessUrl("/index")
+        		.failureUrl("/")
         		.permitAll();
         	
         //CSRF対策を無効に設定（一時的）
@@ -43,13 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        // パスワード
-        String password = passwordEncoder().encode("password");
-
-        // インメモリの認証を行うための設定
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder())
-                .withUser("username").password(password).roles("USER");
+        auth
+         .userDetailsService(userDetailsService)
+         .passwordEncoder(paswordEncoder());
     }
 	@Bean
     public PasswordEncoder passwordEncoder() {

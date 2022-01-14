@@ -16,8 +16,15 @@ public class User {
 	private String name;
     private String passwords__c;
     private String user_name__c;
+    private Boolean enabled;
     
-    public Long getId() {
+    public Boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -43,8 +50,12 @@ public class User {
 	}
 	public User() {}
 	
-	public User(String name,String passwords__c) {
+	public User(String name,String passwords__c,Boolean enabled) {
 		setName(name);
 		setPassWord(passwords__c);
+		setEnabled(enabled);
+	}
+	public boolean isEnabled() {
+		return enabled;
 	}
 }

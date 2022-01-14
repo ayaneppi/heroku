@@ -7,46 +7,58 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserAccount implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private User us;
+	private Collection<GrantedAuthority> authorities;
+	
+	protected UserAccount() {}
+	public UserAccount(User user,Collection<GrantedAuthority> authorities) {
+		this.us = user;
+		this.authorities = authorities;
+	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.authorities;
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return us.getPassWord();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return us.getName();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return us.isEnabled();
 	}
+
 
 }
