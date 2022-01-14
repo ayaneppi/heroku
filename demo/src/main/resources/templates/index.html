@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<link rel=“stylesheet” href=“style.css”>
 <body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 	<table>
 		<thead>
 	      	<tr>
 	        <th>ID</th>
-	        <th>Property名</th>
+	        <th>建物名</th>
 	      	</tr>
     	</thead>
     	<tbody>
