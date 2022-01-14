@@ -38,8 +38,13 @@ public class User {
 	public String getPassWord() {
 		return passwords__c;
 	}
-	public void setPassWord(String passwords) {
-		this.passwords__c = passwords;
+	public void setPassWord(String passwords__c) {
+		this.passwords__c = passwords__c;
 	}
+	public User() {}
 	
+	public User(String name,String passwords__c) {
+		setName(name);
+		setPassWord(passwords__c);
+	}
 }
