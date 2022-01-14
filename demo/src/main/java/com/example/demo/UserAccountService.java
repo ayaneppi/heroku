@@ -1,8 +1,11 @@
 package com.example.demo;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -34,7 +37,16 @@ public class UserAccountService implements UserDetailsService {
 		if(!ac.isEnabled()) {
 			throw new UsernameNotFoundException("User not found:" + username);
 		}
+		UserAccount user = new UserAccount(ac,getAuthorities(ac));
 		
-		return ac;
+		return user;
+	}
+	
+	private Collection<GrantedAuthority> getAuthorities(User user){
+		if(user.isAdmin()) {
+			return AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER");
+		}else{
+			return AuthorityUtils.createAuthorityList("ROLE_USER");
+		}
 	}
 }

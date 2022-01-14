@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.User;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	private UserDetaialsService userDetailsService;
+	private UserDetailsService userDetailsService;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {

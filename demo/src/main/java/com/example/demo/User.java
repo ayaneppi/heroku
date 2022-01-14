@@ -13,16 +13,24 @@ public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	private boolean admin__c;
 	private String name;
     private String passwords__c;
     private String user_name__c;
-    private Boolean enabled;
+    private Boolean enabled__c;
     
+    
+	public void setAdmin(boolean admin) {
+		this.admin__c = admin;
+	}
+	public boolean isAdmin() {
+		return admin__c;
+	}
     public Boolean getEnabled() {
-		return enabled;
+		return enabled__c;
 	}
 	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
+		this.enabled__c = enabled;
 	}
 	public Long getId() {
 		return id;
@@ -56,6 +64,6 @@ public class User {
 		setEnabled(enabled);
 	}
 	public boolean isEnabled() {
-		return enabled;
+		return enabled__c;
 	}
 }

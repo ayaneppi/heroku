@@ -57,7 +57,8 @@ public class UserAccount implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return us.isEnabled();
+		//return us.isEnabled();
+		return true;
 	}
 
 
