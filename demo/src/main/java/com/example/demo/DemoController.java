@@ -26,7 +26,7 @@ public class DemoController {
 	@RequestMapping(value = "/login",method= RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("iserror",false);
-		return "login";
+		return "Login";
 	}
 	
 	//@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class DemoController {
 	@RequestMapping(value ="/login-error",method = RequestMethod.GET)
 	public String loginError(Model model) {
 		model.addAttribute("iserror",true);
-		return "login";
+		return "Login";
 	}
 	
 	@RequestMapping("/heroku")
