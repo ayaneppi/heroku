@@ -4,6 +4,7 @@
 <link rel=“stylesheet” href=“style.css”>
 <body>
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<p><span sec:authentication="principal.username"></span>さん</p>
 	<table>
 		<thead>
 	      	<tr>
@@ -20,7 +21,7 @@
 			</th>	
     	</tbody>	
 	</table>
-
+<br>
 	<table>
 		<tr>
 			<th>Salesforceのレコードを更新</th>
