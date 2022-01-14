@@ -5,9 +5,12 @@ import java.util.List;
 import javax.swing.event.TableColumnModelListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +30,7 @@ public class DemoController {
 		return "login";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView logincheck(
 		@RequestParam("username")String userName,
 		@RequestParam("password")String passWord,
@@ -35,14 +38,12 @@ public class DemoController {
 		ModelAndView mav = new ModelAndView();
 		//ユーザ検索結果の取得
 		User u = null;
-		
-		//loginurl直打ちのとき
-		if(userName == null) {
-			model.addAttribute("isnull", true);
-			mav.setViewName("Login");
-			return mav;
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(authentication.getPrincipal()instanceof UserAccount) {
+			UserAccount user = UserAccount.class.cast(authentication.getPrincipal());
+			model.addAttribute("userInfo","ようこそ"+user.getUsername()+"さん");
 		}
-		try {
+		/*try {
 			u = us.findbyName(userName);
 		} catch (UsernameNotFoundException e) {
 			//独自の例外です
@@ -53,12 +54,12 @@ public class DemoController {
 			model.addAttribute("iserror", true);
 			mav.setViewName("Login");
 			return mav;
-		}else {
+		}else {*/
 			List<Property> propertyList = rep.findAll();
 			mav.addObject("propertyList", propertyList);
 			mav.setViewName("index");
 			return mav;
-		}
+		//}
 	}
 	
 	@RequestMapping("/heroku")
