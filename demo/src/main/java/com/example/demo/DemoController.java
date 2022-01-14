@@ -32,21 +32,22 @@ public class DemoController {
 		@RequestParam("username")String userName,
 		@RequestParam("password")String passWord,
 		Model model) {
-		
+		ModelAndView mav = new ModelAndView();
 		//ユーザ検索結果の取得
 		User u = null;
+		
+		//loginurl直打ちのとき
+		if(userName == null) {
+			model.addAttribute("isnull", true);
+			mav.setViewName("Login");
+			return mav;
+		}
 		try {
 			u = us.findbyName(userName);
 		} catch (UsernameNotFoundException e) {
 			//独自の例外です
 			System.out.println(e.getMessage());
 		}
-		System.out.println(u.getPassWord().length());
-		System.out.println(passWord.length());
-		System.out.println(u.getPassWord().length());
-		System.out.println("パスワード入力値"+passWord);
-		System.out.println("パスワード取得値"+u.getPassWord());
-		ModelAndView mav = new ModelAndView();
 		//ログインに失敗した場合
 		if(u == null || !u.getPassWord().equals(passWord)) {
 			model.addAttribute("iserror", true);
