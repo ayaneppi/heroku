@@ -24,11 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // ログイン不要ページの設定
-        http
+        /*http
             .authorizeRequests()
-            	//.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
-                //.antMatchers("/login").permitAll() //ログインページは直リンクOK
                 .anyRequest()
                 .authenticated()//それ以外は直リンク禁止
                 .and()
@@ -42,26 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	
         //CSRF対策を無効に設定（一時的）
         http.csrf().disable();
-	    
+	    */
 	 }
 	@Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
     //UserDetailsServiceを設定してDaoAuthenticationProviderを有効化する
      auth.userDetailsService(userDetailsService);
-     //上記作成のエンコードを設定しハッシュ化する
-    // passwordEncoder(passwordEncoder());
     }
-	/*
-	 @Autowired
-     void configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth
-         .userDetailsService(userDetailsService)
-         .passwordEncoder(passwordEncoder());
-    }
-	@Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    */
 }

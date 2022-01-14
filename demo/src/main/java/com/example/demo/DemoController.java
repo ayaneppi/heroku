@@ -22,29 +22,21 @@ public class DemoController {
     Repository rep;
 	
 	
-	@RequestMapping(value = "/login",method= RequestMethod.GET)
+	@RequestMapping(value = "/",method= RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("iserror",false);
 		return "Login";
 	}
 	
-	//@RequestMapping(value = "/login", method = RequestMethod.GET)
 	@RequestMapping(value = "/index",method= RequestMethod.POST)
 	public ModelAndView index(
 		Model model) {
 		ModelAndView mav = new ModelAndView();
-		//ユーザ検索結果の取得
-		User u = null;
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		/*if(authentication.getPrincipal()instanceof UserAccount) {
-			UserAccount user = UserAccount.class.cast(authentication.getPrincipal());
-			model.addAttribute("userInfo","ようこそ"+user.getUsername()+"さん");
-		}*/
-
-			List<Property> propertyList = rep.findAll();
-			mav.addObject("propertyList", propertyList);
-			mav.setViewName("index");
-			return mav;
+		
+		List<Property> propertyList = rep.findAll();
+		mav.addObject("propertyList", propertyList);
+		mav.setViewName("index");
+		return mav;
 	}
 	
 	@RequestMapping(value ="/login-error",method = RequestMethod.GET)
