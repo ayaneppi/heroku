@@ -21,23 +21,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//静的リソースへのアクセスには、セキュリティを適用しない
         web.ignoring().antMatchers("/webjars/∗∗", "/css/∗∗");
 	}
-	 @Override
-	    protected void configure(HttpSecurity http) throws Exception {
+	@Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-	        // ログイン不要ページの設定
-	        http
-	            .authorizeRequests()
-	            	.antMatchers("/").permitAll() //ホームへアクセス許可
-	                .antMatchers("/css/**").permitAll() //cssへアクセス許可
-	                .antMatchers("/login").permitAll() //ログインページは直リンクOK
-	                .anyRequest().authenticated(); //それ以外は直リンク禁止
+        // ログイン不要ページの設定
+        http
+            .authorizeRequests()
+            	.antMatchers("/").permitAll() //ホームへアクセス許可
+                .antMatchers("/css/**").permitAll() //cssへアクセス許可
+                .antMatchers("/login").permitAll() //ログインページは直リンクOK
+                .anyRequest().authenticated(); //それ以外は直リンク禁止
 
-	        //CSRF対策を無効に設定（一時的）
-	        http.csrf().disable();
+        //CSRF対策を無効に設定（一時的）
+        http.csrf().disable();
 	    
 	 }
 	 @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         // パスワード
         String password = passwordEncoder().encode("password");
