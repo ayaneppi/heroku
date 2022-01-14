@@ -37,10 +37,10 @@ public class DemoController {
 		//ユーザ検索結果の取得
 		User u = null;
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication.getPrincipal()instanceof UserAccount) {
+		/*if(authentication.getPrincipal()instanceof UserAccount) {
 			UserAccount user = UserAccount.class.cast(authentication.getPrincipal());
 			model.addAttribute("userInfo","ようこそ"+user.getUsername()+"さん");
-		}
+		}*/
 
 			List<Property> propertyList = rep.findAll();
 			mav.addObject("propertyList", propertyList);
