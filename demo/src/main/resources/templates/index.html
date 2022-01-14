@@ -28,7 +28,7 @@
 		</tr>
 		
 		<form th:action = "@{/heroku}" method="post">
-		<div th:if="${iserror}" style="color:red;">
+		<div th:if="${isnull}" style="color:red;">
 			<p>正しい値を入力して下さい</p>
 		</div>
 	  	<tr>
