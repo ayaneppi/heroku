@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.List;
 
+import javax.swing.event.TableColumnModelListener;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,27 +65,33 @@ public class DemoController {
 		@RequestParam("Id")Long Id,
 		@RequestParam("newName")String newName,
 		Model model) {
-		String oldName = null;
-		//Idで検索かける
-		Property proId = rep.findById(Id).orElseThrow();
-		oldName = proId.getName();
-		//DBに更新かける
-		proId.setName(newName);
-		rep.save(proId);
-		/*
-		for(Property p : findPropertyList){
-			//入力されたIdと一致した場合は変更前のProperty名を取得する
-			if(p.getId() == Id) {
-				oldName = p.getName();
+		//入力値がNULLだった場合
+		if(Id == null || newName == null) {
+			model.addAttribute("iserror", true);
+			List<Property> propertyList = rep.findAll();
+			model.addAttribute("propertyList",propertyList);
+			return "index";
+		}else {
+			String oldName = null;
+			//Idで検索かける
+			Property proId = rep.findById(Id).orElseThrow();
+			
+			//返却地がNULLだったとき
+			if(proId == null) {
+				model.addAttribute("iserror", true);
+				List<Property> propertyList = rep.findAll();
+				model.addAttribute("propertyList",propertyList);
+				return "index";
+			}else {
+				oldName = proId.getName();
 				//DBに更新かける
-				p.setName(newName);
-				rep.save(p);
+				proId.setName(newName);
+				rep.save(proId);
+				model.addAttribute("oldName",oldName);
+				model.addAttribute("Id",Id);
+				model.addAttribute("newName",newName);
+				return "temp";
 			}
-		}*/
-		
-		model.addAttribute("oldName",oldName);
-		model.addAttribute("Id",Id);
-		model.addAttribute("newName",newName);
-		return "temp";
+		}
 	}
 }
