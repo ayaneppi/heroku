@@ -29,7 +29,7 @@ public class DemoController {
 	}
 	
 	//@RequestMapping(value = "/login", method = RequestMethod.GET)
-	@RequestMapping(value = "/index")
+	@RequestMapping(value = "/index",method= RequestMethod.POST)
 	public ModelAndView index(
 		Model model) {
 		ModelAndView mav = new ModelAndView();
