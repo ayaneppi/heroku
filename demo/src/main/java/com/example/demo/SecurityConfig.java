@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
         	.formLogin()
         		.loginPage("/login")
-        		.defaultSuccessUrl("/index")
+        		.usernameParameter("username")//Usernameのパラメータとして使用する項目のnameを設定する
+    			.passwordParameter("password")//Passwordのパラメータとして使用する項目のnameを設定する
+        		.defaultSuccessUrl("/index",true)
         		.failureUrl("/login-error")
         		.permitAll();
         	
@@ -42,6 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 	    
 	 }
+	@Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+    //UserDetailsServiceを設定してDaoAuthenticationProviderを有効化する
+     auth.userDetailsService(userDetailsService);
+     //上記作成のエンコードを設定しハッシュ化する
+    // passwordEncoder(passwordEncoder());
+    }
 	/*
 	 @Autowired
      void configureAuthenticationManager(AuthenticationManagerBuilder auth) throws Exception {
