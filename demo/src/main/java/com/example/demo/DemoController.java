@@ -20,8 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DemoController {
 	@Autowired
     Repository rep;
-	@Autowired
-	UserService us;
+	
 	
 	@RequestMapping(value = "/login",method= RequestMethod.GET)
 	public String login(Model model) {
