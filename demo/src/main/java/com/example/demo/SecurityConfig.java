@@ -30,13 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             	.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
                 .antMatchers("/login").permitAll() //ログインページは直リンクOK
-                .anyRequest().authenticated()//それ以外は直リンク禁止
-                .and()
-        	.formLogin()
-        		.loginPage("/login")
-        		.defaultSuccessUrl("/index")
-        		.failureUrl("/login")
-        		.permitAll();
+                .anyRequest().authenticated();//それ以外は直リンク禁止
         	
         //CSRF対策を無効に設定（一時的）
         http.csrf().disable();
@@ -51,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // インメモリの認証を行うための設定
         auth.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .withUser("user").password(password).roles("USER");
+                .withUser("username").password(password).roles("USER");
     }
 	@Bean
     public PasswordEncoder passwordEncoder() {
