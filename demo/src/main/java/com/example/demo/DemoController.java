@@ -22,13 +22,13 @@ public class DemoController {
     Repository rep;
 	
 	
-	@RequestMapping(value = "/",method= RequestMethod.GET)
+	@RequestMapping(value = "/login",method= RequestMethod.GET)
 	public String login(Model model) {
 		model.addAttribute("iserror",false);
 		return "Login";
 	}
 	
-	@RequestMapping(value = "/index",method= RequestMethod.POST)
+	@RequestMapping(value = "/index",method= RequestMethod.GET)
 	public ModelAndView index(
 		Model model) {
 		ModelAndView mav = new ModelAndView();

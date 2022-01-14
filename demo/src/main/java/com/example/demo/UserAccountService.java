@@ -30,10 +30,10 @@ public class UserAccountService implements UserDetailsService {
 		if(ac == null) {
 			throw new UsernameNotFoundException("Username not found:" + username);
 		}
-		
+		/*
 		if(!ac.isEnabled()) {
 			throw new UsernameNotFoundException("User not found:" + username);
-		}
+		}*/
 		UserAccount user = new UserAccount(ac,getAuthorities(ac));
 		
 		return user;
