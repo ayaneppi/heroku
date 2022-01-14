@@ -30,7 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             	.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
                 .antMatchers("/login").permitAll() //ログインページは直リンクOK
-                .anyRequest().authenticated();//それ以外は直リンク禁止
+                .anyRequest().authenticated()//それ以外は直リンク禁止
+                .and()
+        	.formLogin()
+        		.loginPage("/")
+        		.permitAll();
         	
         //CSRF対策を無効に設定（一時的）
         http.csrf().disable();
