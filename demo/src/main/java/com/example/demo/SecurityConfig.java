@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             	.antMatchers("/").permitAll() //ホームへアクセス許可
                 .antMatchers("/css/**").permitAll() //cssへアクセス許可
-                .antMatchers("/login").permitAll() //ログインページは直リンクOK
                 .anyRequest().authenticated();//それ以外は直リンク禁止
         	
         //CSRF対策を無効に設定（一時的）
