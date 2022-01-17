@@ -32,7 +32,6 @@ public class DemoController {
 	public ModelAndView index(
 		Model model) {
 		ModelAndView mav = new ModelAndView();
-		
 		List<Property> propertyList = rep.findAll();
 		mav.addObject("propertyList", propertyList);
 		mav.setViewName("index");
